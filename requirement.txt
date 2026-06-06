@@ -6,3 +6,5 @@ pypdf
 sentence-transformers
 langchain-text-splitters
 python-dotenv
+streamlit
+requests
