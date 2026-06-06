@@ -1,0 +1,27 @@
+MAI-Image-2.5 is our strongest image model yet – and now ranks No. 2 on Arena’s Image Edit leaderboard, ahead of Nano Banana 2.1
+
+Built for high-quality generation and precise, controllable editing, it brings production-ready image workflows to developers and Microsoft products.
+
+Today, we’re launching MAI-Image-2.5 for maximum fidelity, and MAI-Image-2.5-Flash for fast, scalable production workloads.
+
+Features and capabilities
+Step-change in text-to-image quality
+
+MAI-Image-2.5 produces more detailed, coherent images from prompts, with stronger text rendering, product imagery and prompt adherence.
+
+Complex visual reasoning
+
+The model understands scene structure, lighting, scale, and spatial relationships, helping it make edits that fit the image context, such as adding an object with the right perspective and shadows.
+
+Fine-grained edit control
+
+MAI-Image-2.5 supports precise, localized edits, from replacing an object or updating text to removing motion blur, without changing the rest of the image.
+
+Face and identity consistency
+
+MAI-Image-2.5 preserves facial identity across edits, maintaining recognizable likeness even through changes in pose, expression or viewpoint.
+
+Benchmarks
+MAI-Image-2.5 achieves Arena scores that surpass GPT-Image-1.5 and Nano Banana Pro 2K, ranking No. 3 for text-to-image and No. 2 on Arena’s image-editing leaderboard.
+
+Across these evaluations, MAI-Image-2.5 demonstrates leading performance in image generation and editing, with strong results across prompt adherence, visual quality, and controlled image modification.
