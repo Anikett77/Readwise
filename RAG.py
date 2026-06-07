@@ -92,6 +92,33 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; background: #f7
 
 .thin-line { border:none; border-top:1px solid #ede8e3; margin:1rem 0; }
 
+/* loader */
+.loader-wrap {
+  display:flex; align-items:center; gap:0.9rem;
+  padding:1rem 1.2rem;
+  background:#fff; border:1px solid #e2dcd6;
+  border-radius:2px 14px 14px 14px;
+  max-width:78%; margin-bottom:1.2rem;
+}
+.loader-dots {
+  display:flex; gap:5px; align-items:center;
+}
+.loader-dots span {
+  width:7px; height:7px; border-radius:50%;
+  background:#c2692a; display:inline-block;
+  animation:bounce 1.2s infinite ease-in-out;
+}
+.loader-dots span:nth-child(2) { animation-delay:0.2s; }
+.loader-dots span:nth-child(3) { animation-delay:0.4s; }
+@keyframes bounce {
+  0%,80%,100% { transform:scale(0.6); opacity:0.4; }
+  40%         { transform:scale(1);   opacity:1; }
+}
+.loader-text {
+  font-family:'Lora',serif; font-style:italic;
+  font-size:0.85rem; color:#a8a09a;
+}
+
 [data-testid="stAlert"] { border-radius:6px !important; font-size:0.85rem !important; }
 </style>
 """, unsafe_allow_html=True)
@@ -343,12 +370,30 @@ with right:
             st.session_state.last_error = None
             st.session_state.chat_history.append({"role": "user", "content": question})
 
-            with st.spinner("Thinking…"):
-                try:
-                    ans = query(st.session_state.pdf_text, question,
-                                st.session_state.chat_history[:-1], model_choice)
-                    st.session_state.chat_history.append({"role": "assistant", "content": ans})
-                except Exception as e:
-                    st.session_state.last_error = str(e)
-                    st.session_state.chat_history.pop()
+            # show loader
+            loader = st.empty()
+            loader.markdown("""
+            <div style="display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:1.2rem">
+              <div class="ai-avatar">r</div>
+              <div>
+                <div class="bubble-ai-name">Readwise</div>
+                <div class="loader-wrap">
+                  <div class="loader-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="loader-text">Reading your document…</div>
+                </div>
+              </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            try:
+                ans = query(st.session_state.pdf_text, question,
+                            st.session_state.chat_history[:-1], model_choice)
+                st.session_state.chat_history.append({"role": "assistant", "content": ans})
+            except Exception as e:
+                st.session_state.last_error = str(e)
+                st.session_state.chat_history.pop()
+
+            loader.empty()
             st.rerun()
